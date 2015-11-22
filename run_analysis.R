@@ -60,4 +60,4 @@ subj_act_mean<-dcast(new_df, Subject + Activity_id ~variable, mean)
 # library(plyr)
 
 write.table(subj_act_mean, file = "tidydata.txt",row.name=FALSE)
-tidy_d<-read.table("tidydata.txt", header = TRUE)
+tidy_d<-read.table("tidydata.txt", header = TRUE) 
