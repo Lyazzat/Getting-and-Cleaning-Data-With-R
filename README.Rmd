@@ -1,0 +1,60 @@
+#Getting and Cleaning Data Course Project
+Data extract was sourced from the following hyperlink: [Link](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) 
+GitHub repo GetCleanData:
+*	README.md -- this repo explains how all of the scripts work and how they are connected. 
+*	CodeBook.md -- describes the variables, the data, and any transformations or work that was performed to clean up the data. 
+*	run_analysis.R - R script to clean and manipulate the data
+
+##run_analysis.R objectives:
+run_analysis.R is an R - script that performs following actions: 
+1.	Merges the training and the test sets into single data set called "df_combined".
+2.	Extracts only the measurements on the mean and standard deviation for each measurement. 
+3.	Renames each activity type to descriptive labels provided in the activity_label.txt
+4.	Appropriately labels the data set with descriptive variable names. 
+5.	extracts average of each variable for each activity and each subject and saves in a new dataset called "tidydata.txt".
+
+###Following items were provided initially in the zip folder UCI HAR Dataset:
+*	activity_labels.txt
+*	features.txt
+*	test/
+*	train/
+
+The output is created in working directory with the name of tidydata.txt
+Note: the R script is built to run without including any libraries for the purpose of this course.
+run_analysis.R steps:
+
+### Q.1 
+1.Download the zip file to your working directory
+2.Read the test and training files: 
+                      *x_test.txt
+                      *y_test.txt 
+                      *subject_test.txt 
+                      *x_train.txt
+                      *y_train.txt
+                      *subject_train
+3. create a variable for each file read:
+                      
+                      *df_xtrain 
+                      *df_ytrain 
+                      *df_subtrain 
+                      *df_xtest 
+                      *df_ytest 
+                      *df_subtest 
+
+4. Combine 6 variables (see above) for train and test into 2 variables "train_all" and "test_all"
+5. Merge both train_all and test_all into one data frame called "df_combined".
+
+### Q.2
+
+1. Read the features from features.txt and only subset column names that are either have ("mean()")     or standard deviations ("std()"). 
+2.	A new variable is then created that includes subjects, labels and the described features.
+
+### Q.3
+1.	Read the activity labels from activity_labels.txt and replace the numbers with the label names provided.
+### Q.4
+1.	Clean up and give more descriptive name to variables by referencing features_info.txt
+
+### Q.5
+1.	Using reshape2 package, create calcuate mean for each variable and grouped by subject and activity type
+2. Save to a new tidy data set tidydata.txt, formatted similarly to the original files.
+
