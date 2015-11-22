@@ -49,7 +49,7 @@ names(df_combined) <- gsub("Mag", "Magnitude", names(df_combined))
 #install.packages("reshape2")
 
 library(reshape2)
-act_subj<-df_combined[, grep("Activity_id|Subject|mean\\(\\)", colnames(df_combined))]
+act_subj<-df_combined[, grep("Activity_id|Subject|mean\\(\\)|std\\(\\)", colnames(df_combined))]
 new_df<-data.frame()
 new_df<-melt(act_subj, id.vars = c("Activity_id", "Subject"))
 
@@ -60,4 +60,4 @@ subj_act_mean<-dcast(new_df, Subject + Activity_id ~variable, mean)
 # library(plyr)
 
 write.table(subj_act_mean, file = "tidydata.txt",row.name=FALSE)
-tidy_d<-read.table("tidydata.txt", header = TRUE) 
+tidy_d<-read.table("tidydata.txt", header = TRUE)
